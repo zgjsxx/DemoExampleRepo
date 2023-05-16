@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.16)
+project(test)
+
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
+add_executable(addtest addtest.cc)
+find_package(ADD)
+if(ADD_FOUND)
+    target_include_directories(addtest PRIVATE ${ADD_INCLUDE_DIR})
+    target_link_libraries(addtest ${ADD_LIBRARY})
+else(ADD_FOUND)
+    message(FATAL_ERROR "ADD library not found")
+endif(ADD_FOUND)
